@@ -1,0 +1,145 @@
+{{ 'grid-images-link.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<style></style>
+
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} grid-images-link-section testimonials-section">
+  <div class="page-width">
+    {% if section.settings.heading %}
+      <h2 class="title text-center" data-aos="fade-up">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="grid-images-link__content">
+        {% for block in section.blocks %}
+            <div class="grid-images-link__item" data-aos="fade-up">
+                {% if block.settings.image %}
+                    {{ block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy' }}
+                {% endif %}
+                <div class="grid-images-link__item--info">
+                    {% if block.settings.subheading %}
+                        <p class="subheading">{{ block.settings.subheading }}</p>
+                    {% endif %}
+                    {% if block.settings.heading %}
+                        <h3>{{ block.settings.heading }}</h3>
+                    {% endif %}
+                    {% if block.settings.name %}
+                        <p class="name">{{ block.settings.name }}</p>
+                    {% endif %}
+                    {% if block.settings.job %}
+                        <p class="job">{{ block.settings.job }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range", 
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "subheading",
+          "label": "Sub heading",
+          "default": "Sub heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "name",
+          "label": "Name",
+          "default": "Name"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "job",
+          "label": "Job",
+          "default": "job"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

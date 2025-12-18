@@ -1,0 +1,221 @@
+{{ 'text-with-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+    .parameter-details__content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .parameter-details__button {
+    display: inline-block;
+    width: fit-content;
+    padding: 12px 24px;
+    border-radius: 999px;
+    background-color: #077D9E; /* adjust to brand color */
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+    margin-bottom:60px;
+  }
+
+  .parameter-details__button:hover {
+    background-color: #006b7d;
+    transform: translateY(-1px);
+  }
+
+  .grid-images-content {
+  display: flex;
+  gap: 24px;
+  margin-top: 48px;
+  align-items: center;
+}
+
+.grid-image-item {
+  flex: 1;
+  transition: transform 0.4s ease, z-index 0.4s ease;
+  position: relative;
+}
+
+.grid-image-item img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+/* Hover effect */
+.grid-image-item:hover {
+  transform: scale(1.15);
+  z-index: 5;
+}
+
+/* Optional: emphasize center image */
+.grid-image-item:nth-child(2) {
+  flex: 1.2;
+}
+
+/* Mobile */
+@media screen and (max-width: 749px) {
+  .grid-images-content {
+    flex-direction: column;
+  }
+
+  .grid-image-item img {
+    height: 220px;
+  }
+
+  .grid-image-item:hover {
+    transform: scale(1.05);
+  }
+}
+
+  @media screen and (max-width: 749px) {
+    .parameter-details__button {
+      margin-top: 8px;
+    }
+  }
+
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+{%- endstyle -%}
+
+<style></style>
+
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} text-with-text-section">
+  <div class="page-width">
+    <div class="text-with-text__content">
+      <div class="text-with-text__content-left" data-aos="fade-up">
+        {% if section.settings.subheading !=blank %}
+          <p class="subheading"><span></span> {{ section.settings.subheading }}</p>
+        {% endif %}
+        {% if section.settings.heading %}
+          <h3 class="heading">{{ section.settings.heading }}</h3>
+        {% endif %}
+      </div>
+      <div class="text-with-text__content-right" data-aos="fade-up">
+        {% if section.settings.description %}
+          <div class="description">{{ section.settings.description }}</div>
+        {% endif %}
+        {% if section.settings.button_label != blank %}
+          <a
+            href="{{ section.settings.button_link }}"
+            class="parameter-details__button"
+          >
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="grid-images-content" data-aos="fade-up">
+  {% for block in section.blocks %}
+    {% if block.type == 'image' and block.settings.image %}
+      <div class="grid-image-item">
+        {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy' }}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Text with text",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Sub heading",
+      "default": "Sub heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Description</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Voir nos produits"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Text with text"
+    }
+  ]
+}
+{% endschema %}
+

@@ -1,0 +1,146 @@
+{{ 'parameter-details.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<style></style>
+
+{% liquid
+  assign sizes = '(min-width: 750px) ' | append: media_width_desktop | append: ', ' | append: media_width_mobile
+  assign widths = '832, 1200, 1600, 1920, 2560, 3840'
+  assign sizes_mobile = media_width_mobile
+  assign mobile_widths = '416, 600, 800, 1200, 1600'
+
+  assign fetch_priority = 'auto'
+
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+%}
+
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} parameter-details-section">
+  <div class="page-width">
+    {% if section.settings.heading %}
+      <h2 class="title heading" data-aos="fade-up">{{ section.settings.heading }}</h2>
+    {% endif %}
+    <div class="parameter-details__image" data-aos="fade-up">
+      {% if section.settings.image %}
+        {{
+          section.settings.image
+          | image_url: width: 3840
+          | image_tag:
+            width: section.settings.image_1.width,
+            widths: widths,
+            height: section.settings.image_1.height,
+            alt: section.settings.image_1.alt,
+            sizes: sizes,
+            fetchpriority: fetch_priority
+        }}
+      {% endif %}
+      <div class="parameter-details__description">
+        {{ section.settings.description }}
+      </div>
+    </div>
+    <div class="parameter-details__content">
+        {% for block in section.blocks %}
+            <div class="parameter-details__item">
+                {% if block.settings.heading %}
+                    <h3 class="title heading" data-aos="fade-up">{{ block.settings.heading }}</h3>
+                {% endif %}
+                {% if block.settings.text %}
+                    <p data-aos="fade-up">{{ block.settings.text }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Parameter details",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Parameter details"
+    }
+  ]
+}
+{% endschema %}

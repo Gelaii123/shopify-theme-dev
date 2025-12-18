@@ -1,0 +1,28 @@
+{% if product.metafields.custom.product_label.value %}
+    <div class="product-label">
+        {{ product.metafields.custom.product_label.value }}
+    </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product label",
+  "tag": null,
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product label",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

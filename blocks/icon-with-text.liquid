@@ -1,0 +1,45 @@
+{% if product.metafields.custom.product_texts.value %}
+    <div class="product-icon-with-text__item-list">
+        {% for heading in product.metafields.custom.product_texts.value %}
+            <div class="product-icon-with-text__item" data-aos="fade-up">
+                <div class="product-icon-with-text-icon">
+                    {% assign index = forloop.index %}
+                    {% if product.metafields.custom.product_icons.value %}
+                        {% for icon in product.metafields.custom.product_icons.value %}
+                            {% if forloop.index == index %}
+                                <img src="{{ icon | image_url: width: 20, height: 20 }}" width="20" height= "20" loading="lazy">
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="product-icon-with-text-content">
+                    {% assign index = forloop.index %}
+                    <h4>{{ heading }}</h4> 
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Icon with text",
+  "tag": null,
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon with text",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

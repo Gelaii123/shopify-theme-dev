@@ -1,0 +1,150 @@
+.grid-images-link__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.grid-images-link-section h2.title {
+    color: #111;
+    text-align: center;
+
+    /* Heading/Heading 2/Medium */
+    font-family: "Neue Montreal";
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%; /* 67.2px */
+    letter-spacing: 0.728px;
+    margin: 0;
+    margin-bottom: 80px;
+}
+
+.grid-images-link__item {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.grid-images-link__item--info {
+    position: absolute;
+    bottom: -84px;
+    left: 0;
+    right: 0;
+    transition: bottom 0.5s ease;
+    padding: 24px;
+}
+
+.grid-images-link__item:hover .grid-images-link__item--info {
+    bottom: 0 !important;
+}
+
+.grid-images-link__item--info h3 {
+    color: #111;
+    font-family: "Neue Montreal";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%; /* 28.8px */
+    letter-spacing: 0.312px;
+    margin: 0;
+}
+
+.grid-images-link__item--info p {
+    color: #999;
+    font-family: "Neue Montreal";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 21.6px */
+    letter-spacing: 0.234px;
+    margin: 0;
+    margin-top: 8px;
+}
+
+.grid-images-link__item--info a {
+    border-radius: 980px;
+    border: 1px solid rgba(7, 125, 158, 0.70);
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(10px);
+    padding: 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    color: #077D9E;
+
+    /* Body/Body Small/Regular */
+    font-family: "Neue Montreal";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 24px */
+    letter-spacing: 0.26px;
+    margin-top: 24px;
+}
+
+.grid-images-link__item--info a:hover {
+    background: rgba(7, 125, 158, 0.70);
+    color: white;
+    transition: all 0.5s;
+}
+
+.testimonials-section .grid-images-link__item--info {
+    /* background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.70) 24.04%, #FFF 41.83%, #FFF 64.42%, #FFF 100%);
+    filter: blur(0px);
+    backdrop-filter: blur(50px); */
+    background: linear-gradient(180deg, #fff0, #ffffffb3 30.04%, #fff 76.83% 83.42%, #fff);
+    filter: blur(0px);
+}
+
+.testimonials-section .subheading {
+    color: #077D9E;
+
+    /* Body/Body XSmall/Regular */
+    font-family: "Neue Montreal";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 21.6px */
+    letter-spacing: 0.234px;
+    margin-bottom: 16px;
+}
+
+.testimonials-section .heading {
+    color: #111;
+    font-family: "Neue Montreal";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 28.8px */
+    margin: 0;
+}
+
+.testimonials-section .name {
+    color: #111;
+    font-family: "Neue Montreal";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%; /* 24px */
+    letter-spacing: 0.26px;
+    margin: 40px 0 8px 0;
+}
+
+.testimonials-section .job {
+    overflow: hidden;
+    color: #999;
+    text-overflow: ellipsis;
+    font-family: "Neue Montreal";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 19.2px */
+    margin: 0;
+}
+
+.testimonials-section .grid-images-link__item--info {
+    bottom: -300px;
+}
+

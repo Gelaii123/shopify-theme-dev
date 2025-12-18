@@ -1,0 +1,108 @@
+.parameter-details__image {
+    position: relative;
+}
+
+.parameter-details__description {
+    border-radius: 20px;
+    background: var(--Base-White, #FFF);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+    padding: 24px;
+    position: absolute;
+    width: calc(100% - 128px);
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    color: var(--Neutral-950, #111);
+
+    /* Body/Body Medium/Regular */
+    font-family: "Neue Montreal";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 28.8px */
+    letter-spacing: 0.312px;
+}
+
+.parameter-details__image img {
+    border-radius: 24px;
+}
+
+.parameter-details__content {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px;
+}
+
+.parameter-details__item {
+    border-radius: 28px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    background: #F6F6F6;
+    text-align: center;
+}
+
+.parameter-details__item h3 {
+    color: var(--Neutral-950, #111);
+    text-align: center;
+
+    /* Heading/Heading 3/Medium */
+    font-family: "Neue Montreal";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%; /* 48px */
+    letter-spacing: 0.52px;
+    margin: 0;
+}
+
+.parameter-details__item p {
+    color: var(--Neutral-950, #111);
+    text-align: center;
+
+    /* Body/Body Small/Regular */
+    font-family: "Neue Montreal";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 24px */
+    letter-spacing: 0.26px;
+    margin: 0;
+}
+
+.parameter-details-section h2.title {
+    color: var(--Neutral-950, #111);
+    text-align: center;
+
+    /* Heading/Heading 2/Medium */
+    font-family: "Neue Montreal";
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%; /* 67.2px */
+    letter-spacing: 0.728px;
+    margin-bottom: 80px;
+}
+
+.image-banner-section h2 {
+    margin-bottom: 20px !important;
+}
+
+.image-banner-section p.description {
+    color: #999;
+    text-align: center;
+
+    /* Body/Body Small/Regular */
+    font-family: "Neue Montreal";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 24px */
+    letter-spacing: 0.26px;
+    max-width: 628px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
